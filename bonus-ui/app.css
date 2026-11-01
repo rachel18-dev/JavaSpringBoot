@@ -1,0 +1,80 @@
+:root {
+  --green: #6db33f;
+  --green-dark: #3f7f1f;
+  --navy: #0f1b20;
+  --ink: #1b2327;
+  --muted: #5f6f76;
+  --line: #d5dee2;
+  --tint: #eef3ef;
+  --red: #c0392b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--tint);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--navy);
+  color: #fff;
+}
+header h1 { margin: 0; font-size: 20px; }
+header h1::before { content: "● "; color: var(--green); }
+#who { display: flex; align-items: center; gap: 12px; color: #c9d4d9; }
+#who[hidden] { display: none; }
+#who .link { color: #8fd468; }
+
+main { max-width: 720px; margin: 24px auto; padding: 0 16px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+.narrow { max-width: 380px; margin: 40px auto; }
+h2 { margin: 0 0 14px; font-size: 18px; }
+
+label { display: block; margin-bottom: 12px; font-weight: 600; font-size: 13px; color: var(--muted); }
+input, textarea { display: block; width: 100%; margin-top: 4px; padding: 8px 10px; font: inherit; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
+textarea { resize: vertical; margin: 6px 0 10px; }
+input:focus, textarea:focus { outline: 2px solid var(--green); border-color: var(--green); }
+
+button { padding: 8px 16px; font: inherit; font-weight: 600; color: #fff; background: var(--green-dark); border: 0; border-radius: 6px; cursor: pointer; white-space: nowrap; }
+button:hover { background: var(--green); }
+button:disabled { opacity: 0.4; cursor: default; }
+button.secondary { color: var(--ink); background: var(--tint); }
+button.link { padding: 0; color: var(--green-dark); background: none; font-weight: 400; }
+button.link.danger { color: var(--red); }
+
+.row { display: flex; gap: 10px; align-items: center; }
+.row input { margin: 0; }
+.between { justify-content: space-between; }
+.pager { margin-top: 14px; color: var(--muted); }
+.controls { margin-top: 12px; }
+label.inline { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 400; font-size: 14px; color: var(--muted); }
+select { padding: 6px 8px; font: inherit; color: var(--ink); border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+select:disabled { opacity: 0.5; }
+input[type="checkbox"] { width: auto; margin: 0; accent-color: var(--green-dark); }
+
+table { width: 100%; margin-top: 14px; border-collapse: collapse; }
+th, td { padding: 9px 8px; text-align: left; border-bottom: 1px solid var(--line); }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.num { text-align: right; }
+td.actions button { margin-left: 12px; }
+td.empty { color: var(--muted); text-align: center; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+small { display: block; min-height: 18px; margin-top: 3px; font-weight: 400; color: var(--red); }
+.chip { padding: 4px 10px; font-size: 13px; color: var(--green-dark); background: var(--tint); border-radius: 999px; cursor: pointer; }
+.chip[hidden] { display: none; }
+
+.error { margin: 10px 0 0; color: var(--red); }
+.error:empty { display: none; }
+.hint { margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+
+/* ADMIN-only controls are hidden for USER. This is only for the screen: the API enforces the roles. */
+.admin-only { display: none; }
+.is-admin .admin-only { display: revert; }

@@ -1,0 +1,7 @@
+# TODO Day 1 lab (slide "application.properties vs application.yml"): the settings every profile shares
+#   spring.application.name                    product-api
+#   spring.profiles.default                    dev    (no profile chosen? then dev: DataSeeder runs only in dev)
+#   management.endpoints.web.exposure.include  health,info
+#   management.endpoint.health.show-details    always (what the health check looked at)
+#   management.info.java.enabled               true
+#   logging.level.com.example.productapi       DEBUG  (TimingAspect's lines)

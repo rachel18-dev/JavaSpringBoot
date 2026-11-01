@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Catalog</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header>
+    <h1>Product Catalog</h1>
+    <div id="who" hidden>
+      <span id="who-name"></span>
+      <button id="logout" class="link">Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Sign in: POST /api/auth/token with Basic auth; the JWT is kept in memory -->
+    <section id="login-view" class="card narrow">
+      <h2>Sign in</h2>
+      <form id="login-form">
+        <label>Username <input name="username" autocomplete="username" required></label>
+        <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+        <button>Sign in</button>
+        <p class="error" id="login-error"></p>
+      </form>
+      <p class="hint">Try <b>user / user123</b> (read only) or <b>admin / admin123</b> (can add, edit and delete).</p>
+    </section>
+
+    <section id="app-view" hidden>
+      <!-- 2. Add (POST /api/products) or edit (PUT /api/products/{id}): ADMIN only; 400 problem details show under each field -->
+      <form id="product-form" class="card admin-only" novalidate>
+        <h2 id="form-title">Add a product</h2>
+        <div class="grid">
+          <label>Name <input name="name"><small data-for="name"></small></label>
+          <label>Category <input name="category"><small data-for="category"></small></label>
+          <label>Price <input name="price" type="number" step="0.01"><small data-for="price"></small></label>
+          <label>Quantity <input name="quantity" type="number" value="0"><small data-for="quantity"></small></label>
+        </div>
+        <div class="row">
+          <button id="save">Add product</button>
+          <button type="button" id="cancel" class="secondary" hidden>Cancel</button>
+        </div>
+        <p class="error" id="form-error"></p>
+      </form>
+
+      <!-- 3. Read: GET /api/products?sort=…, GET /api/products?category=… or GET /api/products/search?q= -->
+      <div class="card">
+        <form id="search-form" class="row">
+          <input name="q" placeholder="Search by name…">
+          <button class="secondary">Search</button>
+        </form>
+        <div class="row between controls">
+          <label class="inline">Sort
+            <select id="sort">
+              <option value="sort=name,asc">Name A–Z</option>
+              <option value="sort=price,asc">Price: low to high</option>
+              <option value="sort=price,desc">Price: high to low</option>
+              <option value="sort=createdAt,desc&amp;sort=id,desc">Newest first</option>
+            </select>
+          </label>
+          <span id="category-chip" class="chip" hidden></span>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Category</th><th class="num">Price</th><th class="num">Qty</th><th class="admin-only"></th></tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+        <div class="row between pager">
+          <button id="prev" class="secondary">‹ Previous</button>
+          <span id="page-info"></span>
+          <button id="next" class="secondary">Next ›</button>
+        </div>
+        <p class="error" id="list-error"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

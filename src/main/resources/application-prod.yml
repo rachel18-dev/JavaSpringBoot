@@ -1,0 +1,7 @@
+# TODO Day 4 lab (slides "Separate config files for dev and prod" and "Prod refuses to start without its secret"):
+# the settings for a server, with the secrets from environment variables
+#   spring.datasource.url                      jdbc:h2:file:./data/product-prod, user sa, password ${DB_PASSWORD:}
+#   server.port                                ${PORT:8080}
+#   app.jwt.secret                             ${JWT_SECRET}   (no default on purpose)
+#   management.endpoint.health.show-details    never
+#   logging.level.root                         INFO

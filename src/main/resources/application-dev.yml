@@ -1,0 +1,4 @@
+# TODO Day 4 lab (slide "Separate config files for dev and prod"): the settings for your own machine
+# Move here from application.yml: the datasource (jdbc:h2:file:./data/product-dev), show-sql, health
+# show-details always and the DEBUG logging. Add app.jwt.secret: dev-only-secret-not-for-production-use!!
+# and, for the bonus UI, app.open-browser: true.
